@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ch.poudriere</groupId>
+    <artifactId>Bouboutel</artifactId>
+    <version>3.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
+        <exec.mainClass>ch.poudriere.bouboutel.Main</exec.mainClass>
+        <openhtml.version>1.1.22</openhtml.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.akman</groupId>
+                    <artifactId>jpackage-maven-plugin</artifactId>
+                    <version>0.1.5</version>
+                    <configuration>
+                        <!--
+                          Specifies the JDK home path which provides the tool needed.
+                          If not specified the jpackage tool executable will be find in
+                          the following order:
+
+                            - user specified JDK home directory by toolchains-plugin
+                            - JDK home directory specified by system variable JAVA_HOME
+                            - system path specified by system variable PATH
+                        -->
+                        <toolhome>C:\Program Files\Java\jdk-23</toolhome>
+
+                        <!--
+                          Specifies the location in which generated output files are placed.
+                          Default value: $‍{project.build.directory}/jpackage
+                        -->
+                        <!--<dest>$‍{project.build.directory}/jpackage</dest>-->
+
+                        <!--
+                          Specifies the name of subdirectory relative to
+                          the destination directory in which files of generated
+                          application image are placed.
+                        -->
+                        <name>Bouboutel</name>
+
+                        <!--
+                          Specifies version of the application and/or package.
+                        -->
+                        <appversion>2.1</appversion>
+
+                        <!--
+                          Specifies copyright for the application.
+                        -->
+                        <copyright>Copyright</copyright>
+
+                        <!--
+                          Specifies description of the application.
+                        -->
+                        <description>Description</description>
+
+                        <!--
+                          Specifies vendor of the application.
+                        -->
+                        <vendor>Vendor</vendor>
+
+                        <!--
+                          Specifies the location of the icon of the application package.
+                        -->
+                        <!--<icon>$‍{project.basedir}/config/jpackage/resources/appname.ico</icon>-->
+
+                        <!--
+                          Specifies the module path. The path where the jlink tool
+                          discovers observable modules: modular JAR files, JMOD files,
+                          exploded modules. If this option is not specified, then
+                          the default module path is $ JAVA_HOME/jmods. This directory
+                          contains the java.base module and the other standard and
+                          JDK modules. If this option is specified but the java.base
+                          module cannot be resolved from it, then the jlink command
+                          appends $ JAVA_HOME/jmods to the module path.
+                          Pass on &dash;-modulepath option to jlink.
+
+                          pathelements - passed to jlink as is
+                          filesets - sets of files (without directories)
+                          dirsets - sets of directories (without files)
+                          dependencysets - sets of dependencies with specified includes
+                                           and excludes patterns (glob: or regex:)
+                                           for file names and regex patterns only
+                                           for module names, and excludes
+                                           for automatic modules
+                        -->
+                        <modulepath>
+                            <dependencysets>
+                                <dependencyset>
+                                    <includeoutput>true</includeoutput>
+                                    <excludeautomatic>true</excludeautomatic>
+                                </dependencyset>
+                            </dependencysets>
+                        </modulepath>
+
+                        <!--
+                          Specifies the modules names (names of root modules) to add to
+                          the runtime image. Their transitive dependencies will add too.
+                          This module list, along with the main module (if specified)
+                          will be passed to jlink as the &dash;-add-module argument.
+                          If not specified, either just the main module (if module
+                          is specified), or the default set of modules (if mainjar
+                          is specified) are used.
+                        -->
+                        <addmodules>
+                            <addmodule>ch.poudriere.bouboutel</addmodule>
+                        </addmodules>
+
+                        <!--
+                          Specifies the main module (and optionally main class) of
+                          the application. This module must be located on the module path.
+                          When this option is specified, the main module will be linked
+                          in the Java runtime image.
+                          Either module or main-jar option can be specified
+                          but not both.
+                        -->
+                        <module>ch.poudriere.bouboutel/Main</module>
+
+                        <!--
+                          Specifies the command line arguments to pass to the main class
+                          if no command line arguments are given to the launcher.
+                        -->
+                        <arguments>--opt</arguments>
+
+                        <!--
+                          Specifies the options to pass to the Java runtime.
+                        -->
+                        <javaoptions>-Dfile.encoding=UTF-8 -Xms256m -Xmx512m</javaoptions>
+
+                        <!--
+                          Specifies options are added to, or used to overwrite,
+                          the original command line options to build additional
+                          alternative launchers.
+                        -->
+                        <addlaunchers>
+                            <addlauncher>
+                                <name>Bouboutel</name>
+                                <module>ch.poudriere.bouboutel/Main</module>
+                                <arguments>--help</arguments>
+                                <javaoptions>-Xms256m -Xmx512m</javaoptions>
+                                <appversion>2.1</appversion>
+                                <!--<icon>$‍{project.basedir}/config/jpackage/resources/appname-cli.ico</icon>-->
+                                <winconsole>true</winconsole>
+                            </addlauncher>
+                        </addlaunchers>
+
+                        <!--
+                          Specifies the location of a properties file that contains
+                          list of key, value pairs. The keys "extension", "mime-type",
+                          "icon", and "description" can be used to describe the association.
+                        -->
+                        <!--<fileassociations>$‍{project.basedir}/config/jpackage/associations.properties</fileassociations>-->
+
+                        <!--
+                          Specifies the relative sub-path under the default installation
+                          location of the application for Windows, or absolute path of the
+                          installation directory of the application for Mac or Linux.
+                        -->
+                        <installdir>Bouboutel</installdir>
+
+                        <!--
+                          Specifies the location of a license file.
+                        -->
+                        <!--<licensefile>$‍{project.basedir}/config/jpackage/LICENSE</licensefile>-->
+
+                        <!--
+                          Specifies the location of a resources directory that override
+                          jpackage resources. Icons, template files, and other resources
+                          of jpackage can be overridden by adding replacement resources
+                          to this directory.
+                        -->
+                        <!--<resourcedir>$‍{project.basedir}/config/jpackage/resources</resourcedir>-->
+
+                        <!--
+                          Enable adding a dialog to choose a directory in which
+                          the product is installed.
+                          Default value: false
+                        -->
+                        <windirchooser>true</windirchooser>
+
+                        <!--
+                          Enable adding the application to the system menu.
+                          Default value: false
+                        -->
+                        <winmenu>true</winmenu>
+
+                        <!--
+                          Start menu group this application is placed in.
+                        -->
+                        <winmenugroup>Bouboutel</winmenugroup>
+
+                        <!--
+                          Enable requesting to perform an install on a per-user basis.
+                          Default value: false
+                        -->
+                        <!--<winperuserinstall>true</winperuserinstall>-->
+
+                        <!--
+                          Enable creating a desktop shortcut for the application.
+                          Default value: false
+                        -->
+                        <winshortcut>true</winshortcut>
+
+                        <!--
+                          UUID associated with upgrades for this package.
+                        -->
+                        <!--<winupgradeuuid>8CF81762-0B19-46A6-875E-1F839A1700D0</winupgradeuuid>-->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>ch.poudriere.bouboutel.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ch.poudriere.bouboutel.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+<!--            <plugin>
+                <groupId>com.github.akman</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>jpackage-installer</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>templates/*.ftlh</include>
+                    <include>templates/*.jpg</include>
+                    <include>templates/*.png</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.lgooddatepicker</groupId>
+            <artifactId>LGoodDatePicker</artifactId>
+            <version>11.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-swing</artifactId>
+            <version>12.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.15</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>9.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
+        </dependency>
+
+<!--  	<dependency>
+  		 ALWAYS required, usually included transitively. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-core</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>
+  	<dependency>
+  		 Required for PDF output. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-pdfbox</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>
+  	<dependency>
+  		 Required for image output only.   	
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-java2d</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>-->
+<!--  	<dependency>
+  		 Optional, leave out if you do not need right-to-left or bi-directional text support. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-rtl-support</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>
+  	<dependency>
+  	     Optional, leave out if you do not need logging via slf4j. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-slf4j</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>
+  	<dependency>
+  	     Optional, leave out if you do not need SVG support. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-svg-support</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>-->
+<!--  	<dependency>
+  	     Optional, leave out if you do not need MathML support. 
+  	     Introduced in RC-13. 
+  		<groupId>io.github.openhtmltopdf</groupId>
+  		<artifactId>openhtmltopdf-mathml-support</artifactId>
+  		<version>${openhtml.version}</version>
+  	</dependency>-->
+        
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>33.3.0-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.11</version>
+        </dependency>
+    </dependencies>
+</project>
