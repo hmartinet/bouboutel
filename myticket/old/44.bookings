@@ -1,0 +1,17 @@
+bookingsV1
+Journal for Les Souliers Rouges 28.10.2005 at 15:58:30 CEST Théâtre du Pommier 2000 Neuchâtel
+44|80|160|0|0
+SETSHOW|0|Les Souliers Rouges
+SETROOM|0|Théâtre du Pommier
+SETDATE|28.10.2005 at 15:58:30 CEST
+SETNBSEATS|80|80|0|0|0
+ADDPRICE|0|Reservation|(payable au théatre)|0.0|
+ADDPRICE|1|Billet|Adulte|25.0|
+ADDPRICE|2|Billet|Membre/Adhérant/Membre UNIMA/Label Bleu/Club Express|16.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|3|Billet|AVS/Etudiant/Apprenti|18.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|4|Billet|Professionel du spectacle/Chômeur|12.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|5|Billet|Enfant en matinée|12.0|VALABLE SEULEMENT EN MATINEE
+ADDPRICE|6|Billet|Adulte acompagnant en matinée|15.0|VALABLE SEULEMENT EN MATINEE ACCOMPAGNE D'UN BILLET ENFANT
+ADDPRICE|7|Billet|Abonnement 6 spectacles|0.0|VALABLE SEULEMENT AVEC LE PASS DU FESTIVAL
+ADDPRICE|8|Billet|Invitation|0.0|
+ADDPRICE|9|Reservation|Invitation|0.0|

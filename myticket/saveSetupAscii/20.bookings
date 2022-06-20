@@ -1,0 +1,21 @@
+bookingsV1
+Journal for Les Souliers Rouges 26.10.2005 at 19:31:00 CEST Th\u00e9\u00e2tre du Pommier 2000 Neuch\u00e2tel
+20|80|160|0|0
+SETSHOW|0|Les Souliers Rouges
+SETROOM|0|Th\u00e9\u00e2tre du Pommier
+SETDATE|26.10.2005 at 19:31:00 CEST
+SETNBSEATS|80|80|0|0|0
+ADDPRICE|0|Reservation|(payable au th\u00e9atre)|0.0|
+ADDPRICE|1|Billet|Adulte|25.0|
+ADDPRICE|2|Billet|Membre/Adh\u00e9rant/Membre UNIMA/Label Bleu/Club Express|16.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|3|Billet|AVS/Etudiant/Apprenti|18.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|4|Billet|Professionel du spectacle/Ch\u00f4meur|12.0|VALABLE SEULEMENT AVEC PIECE DE LEGITIMATION
+ADDPRICE|5|Billet|Enfant en matin\u00e9e|12.0|VALABLE SEULEMENT EN MATINEE
+ADDPRICE|6|Billet|Adulte acompagnant en matin\u00e9e|15.0|VALABLE SEULEMENT EN MATINEE ACCOMPAGNE D'UN BILLET ENFANT
+ADDPRICE|7|Billet|Abonnement 6 spectacles|0.0|VALABLE SEULEMENT AVEC LE PASS DU FESTIVAL
+ADDPRICE|8|Billet|Invitation|0.0|
+ADDPRICE|9|Reservation|Invitation|0.0|
+SETDATE|19.11.2005 at 17:00:00 CET
+SETNBSEATS|150|150|0|0|0
+SETSHOW|17|Ivi sa vie
+SETROOM|1|Beau-Site

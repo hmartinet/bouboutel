@@ -1,0 +1,16 @@
+bookingsV1
+Journal for VAMPYR 11.10.2007 at 22:02:16 CEST Théâtre du passage - grande salle Neuch�tel
+41|500|1000|1|0
+SETSHOW|1|VAMPYR
+SETROOM|0|Théâtre du passage - grande salle
+SETDATE|11.10.2007 at 22:02:16 CEST
+SETNBSEATS|500|500|0|0|0
+ADDPRICE|0|Reservation|(payable au th??atre)|0.0|
+ADDPRICE|1|Billet|Tarif unique|10.0|
+ADDPRICE|2|Billet|Abonnement "Petites formes"|0.0|VALABLE SEULEMENT AVEC ABONNEMENT PETITES FORMES
+ADDPRICE|3|Billet|Invitation|0.0|
+ADDPRICE|4|Reservation|Invitation|0.0|
+SETDATE|08.11.2007 at 16:00:00 CET
+SETNBSEATS|10|10|0|0|0
+SETSHOW|21|SLAK
+SETROOM|6|Place du Coq d'Inde

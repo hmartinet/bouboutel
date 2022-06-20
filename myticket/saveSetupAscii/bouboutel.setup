@@ -1,0 +1,83 @@
+bouboutelV1
+ADDPERFORMER|2| |Leikh\u00f3purinn Raudu Sk\u00f3rnir||Reykjavik|Islande||
+ADDPERFORMER|4| |Compagnie Les R\u00e9mouleurs||Montsoult|France||
+ADDPERFORMER|5| |Th\u00e9\u00e2tre Potudan||St-Petersbourg|Russie||
+ADDPERFORMER|6| |Ety Fefer||Lima|P\u00e9rou||
+ADDPERFORMER|7| |Axe-Th\u00e9\u00e2tre||Paris|France||
+ADDPERFORMER|8| |Compagnie Gare Centrale||Rhodes Saint-Gen\u00e8se|Belgique||
+ADDPERFORMER|20| |Caden Manson / Big Art Group.||New-York|U.S.A.||
+ADDPERFORMER|21| |Ad Van lersel et Theater Groep Drieons||Tilburg|Pays-Bas||
+ADDPERFORMER|22| |Ad Van lersel et Ulrike Doszmann||Tilburg|Pays-Bas||
+ADDPERFORMER|23| |Barbara M\u00e9lois||Chilly|France||
+ADDPERFORMER|24| |Les Ateliers du Spectacle||Paris|France||
+ADDPERFORMER|25| |Cr\u00e9ation-laboratoire, Brigitte Pougeoise||Paris|France||
+ADDPERFORMER|26| |Mireille et Matthieu||Gand|Belgique||
+ADDPERFORMER|27| |Renate W\u00fcnsch||Berne|Suisse||
+ADDPERFORMER|28| |Christoph Bchdansky||Vienne|Autriche||
+ADDPERFORMER|29| |De et par Pierre Meunier, Compagnie la Belle Meuni\u00e8re||Estivareilles|France||
+ADDPERFORMER|30| |Compagnie M\u00e9diane||Strasbourg|France||
+ADDPERFORMER|31| |Familie Fl\u00f6z||Berlin|Allemagne||
+ADDPERFORMER|32| |Compagnie Au Cul du Loup||M\u00e9lissey|France||
+ADDSHOW|0| |Les Souliers Rouges|2
+ADDSHOW|1| |Lubie|4
+ADDSHOW|2| |Nevsky prospekt|5
+ADDSHOW|3| |Los Grumildos|6
+ADDSHOW|4| |Terre d'oubli|7
+ADDSHOW|5| |D\u00e9gage, petit !|8
+ADDSHOW|6| |House of no more|20
+ADDSHOW|7| |Prettig Verdwaald|21
+ADDSHOW|8| |Wombas'dias|22
+ADDSHOW|9| |Petite histoire \u00e0 l'eau de rose|23
+ADDSHOW|10| |Prolixe|24
+ADDSHOW|11| |Dance & you|25
+ADDSHOW|12| |Leg@ron (of wa?)|26
+ADDSHOW|13| |Marie Marie|27
+ADDSHOW|14| |Diaphanie ou les m\u00e9moires d'une f\u00e9e|23
+ADDSHOW|15| |Midsummer Night's Dream - Reorganized|28
+ADDSHOW|16| |Au milieu du d\u00e9sordre|29
+ADDSHOW|17| |Ivi sa vie|30
+ADDSHOW|18| |Teatro Delusio|31
+ADDSHOW|19| |Terre d'Ar\u00e8ne|32
+ADDROOM|0| |Th\u00e9\u00e2tre du Pommier|Centre Culturel Neuch\u00e2telois, Rue du Pommier 9|2000 Neuch\u00e2tel|Suisse|032 725 05 05||80
+ADDROOM|1| |Th\u00e9\u00e2tre du Passage|Passage Max.-Meuron 4|2000 Neuch\u00e2tel|Suisse|032 717 79 07||500
+ADDROOM|2| |Passage, Petite Salle|Passage Max.-Meuron 4|2000 Neuch\u00e2tel|Suisse|032 717 79 07||110
+ADDROOM|3| |Maison du Concert|H\u00f4tel-de-Ville 4|2000 Neuch\u00e2tel|Suisse|032 724 21 22||100
+ADDROOM|4| |Th\u00e9\u00e2tre de la Poudriere|Quai Philippe-Godet 22|2000 Neuch\u00e2tel|Suisse|032 724 65 19||100
+ADDROOM|5| |Galerie YD|Rue Fleury 6|2000 Neuch\u00e2tel|Suisse|||15
+ADDROOM|0| |L'Heure Bleue|Av. L\u00e9opold Robert 27-29|2300 La Chaux-de-Fonds|Suisse|032 967 60 50||50
+ADDROOM|1| |Beau-Site|Th\u00e9\u00e2tre Populaire Romand, Beau-Site 30|2300 La Chaux-de-Fonds|Suisse|032 967 60 50||200
+ADDROOM|2| |Temple Allemand|Rue du Progr\u00e8s 12|2300 La Chaux-de-Fonds|Suisse|032 967 90 43||40
+ADDROOM|3| |Th\u00e9\u00e2tre ABC|Rue du Coq 11|2300 La Chaux-de-Fonds|Suisse|032 967 90 43||60
+ADDROOM|4| |Le Casino|Av. du Technicum 1|2400 Le Locle|Suisse|032 931 43 30||200
+ADDROOM|5| |Th\u00e9\u00e2tre des Mascarons|Grand rue|2112 M\u00f4tiers (NE)|Suisse|032 861 13 10||100
+ADDROOM|0| |Cave du Concert|H\u00f4tel-de-Ville 4|2000 Neuch\u00e2tel|Suisse|032 724 21 22||40
+ADDPERFORMANCE|2| |11.11.2005 at 20:30:00 CET|0|0|80
+ADDPERFORMANCE|3| |14.11.2005 at 20:00:00 CET|0|0|80
+ADDPERFORMANCE|4| |17.11.2005 at 20:30:00 CET|0|13|80
+ADDPERFORMANCE|5| |19.11.2005 at 17:00:00 CET|0|16|80
+ADDPERFORMANCE|6| |20.11.2005 at 15:00:00 CET|0|16|80
+ADDPERFORMANCE|7| |12.11.2005 at 20:30:00 CET|1|6|500
+ADDPERFORMANCE|8| |20.11.2005 at 17:00:00 CET|1|19|50
+ADDPERFORMANCE|9| |11.11.2005 at 22:00:00 CET|2|2|110
+ADDPERFORMANCE|10| |13.11.2005 at 20:30:00 CET|2|2|110
+ADDPERFORMANCE|11| |16.11.2005 at 18:00:00 CET|0|10|40
+ADDPERFORMANCE|12| |17.11.2005 at 18:00:00 CET|0|10|40
+ADDPERFORMANCE|13| |12.11.2005 at 17:00:00 CET|4|5|100
+ADDPERFORMANCE|14| |13.11.2005 at 17:00:00 CET|4|5|100
+ADDPERFORMANCE|15| |15.11.2005 at 20:30:00 CET|4|7|100
+ADDPERFORMANCE|16| |19.11.2005 at 15:00:00 CET|4|14|100
+ADDPERFORMANCE|17| |11.11.2005 at 20:30:00 CET|1|1|200
+ADDPERFORMANCE|18| |16.11.2005 at 20:30:00 CET|1|12|200
+ADDPERFORMANCE|19| |18.11.2005 at 20:30:00 CET|1|12|200
+ADDPERFORMANCE|20| |19.11.2005 at 17:00:00 CET|1|17|150
+ADDPERFORMANCE|21| |20.11.2005 at 15:00:00 CET|1|17|150
+ADDPERFORMANCE|22| |15.11.2005 at 15:00:00 CET|2|4|40
+ADDPERFORMANCE|23| |12.11.2005 at 18:00:00 CET|2|4|40
+ADDPERFORMANCE|24| |13.11.2005 at 15:00:00 CET|2|4|40
+ADDPERFORMANCE|25| |16.11.2005 at 17:00:00 CET|3|9|60
+ADDPERFORMANCE|26| |18.11.2005 at 18:00:00 CET|3|10|50
+ADDPERFORMANCE|27| |19.11.2005 at 18:00:00 CET|3|10|50
+ADDPERFORMANCE|28| |16.11.2005 at 15:00:00 CET|4|8|200
+ADDPERFORMANCE|29| |18.11.2005 at 19:00:00 CET|5|14|100
+ADDPERFORMANCE|30| |18.11.2005 at 20:30:00 CET|3|15|100
+ADDPERFORMANCE|31| |19.10.2005 at 20:30:00 CEST|0|18|50
