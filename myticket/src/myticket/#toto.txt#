@@ -1,3 +1,0 @@
-Contact.java:    private static long nextid = -1;
-Performance.java:    private static long maxid = 0;
-Ticket.java:    static long idCounter = 0;
