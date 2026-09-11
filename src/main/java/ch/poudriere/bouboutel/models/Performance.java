@@ -175,6 +175,9 @@ public class Performance extends AbstractModel {
     
     public Map<String, TarifSum> getTarifSums() {
         Map<String, TarifSum> result = new HashMap<>();
+        for (Price p: getPrices()) {
+            result.put(p.getTitle(), new TarifSum());
+        }
         for (Ticket t: getTickets()) {
             String tarif = t.getPrice() != 0 ? 
                     String.format("%s CHF %,.2f", t.getTitle(), t.getPrice()) : 

@@ -15,7 +15,10 @@ import ch.poudriere.bouboutel.models.Price;
 import ch.poudriere.bouboutel.models.Ticket;
 import ch.poudriere.bouboutel.utils.Preferences;
 import ch.poudriere.bouboutel.utils.TicketsPrintThread;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -33,6 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 
 /**
@@ -106,8 +110,8 @@ public class JDialogBooking extends javax.swing.JDialog {
         numberFormatter.setAllowsInvalid(false);
         numberFormatter.setMinimum(0L);
         List<Price> prices = performance.getPrices().stream()
-                .sorted(Comparator.comparing(Price::getAction).reversed())
                 .sorted(Comparator.comparing(Price::getPrice).reversed())
+                .sorted(Comparator.comparing(Price::getAction))
                 .collect(Collectors.toList());
         for (Price p : prices) {
             JTextField priceTextField = new JTextField("");
@@ -117,17 +121,16 @@ public class JDialogBooking extends javax.swing.JDialog {
             priceFields.put(p.getId(), priceTextField);
             priceTextField.setHorizontalAlignment(JTextField.RIGHT);
             priceTextField.addKeyListener(keyAdapter);
-            addPriceComponent(priceTextField,
-                    row, 0, 0.);
-
+            addPriceComponent(p.getAction(), priceTextField, row, 0, 0.);
+            JLabel action = new JLabel(
+                I18n.get("enum.price.action.%s".formatted(p.getAction())));
             addPriceComponent(
-                    new JLabel(I18n.get("enum.price.action.%s".formatted(
-                            p.getAction()))),
-                    row, 1, 1.);
-            addPriceComponent(new JLabel(p.getTitle()),
-                    row, 2, 1.);
-            addPriceComponent(new JLabel(I18n.formatCurrency(p.getPrice()),
-                    JLabel.RIGHT),
+                    p.getAction(), action, row, 1, 1.);
+            addPriceComponent(
+                    p.getAction(), new JLabel(p.getTitle()), row, 2, 1.);
+            addPriceComponent(
+                    p.getAction(), new JLabel(
+                        I18n.formatCurrency(p.getPrice()), JLabel.RIGHT),
                     row, 3, 1.);
             row++;
         }
@@ -150,17 +153,25 @@ public class JDialogBooking extends javax.swing.JDialog {
         });
     }
 
-    private void addPriceComponent(Component c, int row, int column,
+    private void addPriceComponent(
+            Price.Action action, Component c, int row, int column,
             double weightx) {
         c.setFont(c.getFont().deriveFont(c.getFont().getSize() + 2f));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = column;
         gbc.gridy = row;
         gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = weightx;
-        pricesPanel.add(c, gbc);
+        JPanel p = new JPanel(new BorderLayout());
+        p.setBorder(new EmptyBorder(5, 5, 5, 5));
+        p.setBackground(
+                action == Price.Action.BOOKING ?
+                new Color(255, 204, 255) :
+                new Color(255, 255, 204));
+        p.add(c, BorderLayout.WEST);
+        pricesPanelTickets.add(p, gbc);
     }
 
     public void updateSeats() {
@@ -199,10 +210,6 @@ public class JDialogBooking extends javax.swing.JDialog {
         return Integer.valueOf(field.getText());
     }
 
-    public void cancel() {
-        dispose();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -223,15 +230,15 @@ public class JDialogBooking extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         bookingPanel = new javax.swing.JPanel();
         bookingLabel = new javax.swing.JLabel();
-        pricesPanel = new javax.swing.JPanel();
+        pricesPanelTickets = new javax.swing.JPanel();
         jLabelTotal = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        jPanelCustomer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTextFieldPhone = new javax.swing.JTextField();
         jButtonRecall = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
+        jPanelActions = new javax.swing.JPanel();
         jButtonCancel = new javax.swing.JButton();
         jButtonOK = new javax.swing.JButton();
 
@@ -288,7 +295,8 @@ public class JDialogBooking extends javax.swing.JDialog {
 
         jPanelTarifs.add(jPanelPerformance, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, javax.swing.UIManager.getDefaults().getColor("Button.borderColor")));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         bookingPanel.setBackground(new java.awt.Color(204, 255, 255));
         bookingPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, javax.swing.UIManager.getDefaults().getColor("Button.borderColor")));
@@ -298,29 +306,27 @@ public class JDialogBooking extends javax.swing.JDialog {
         bookingLabel.setText("Réservation");
         bookingPanel.add(bookingLabel);
 
-        jPanel1.add(bookingPanel, java.awt.BorderLayout.NORTH);
+        jPanel1.add(bookingPanel);
 
-        pricesPanel.setBackground(new java.awt.Color(255, 255, 204));
-        pricesPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, javax.swing.UIManager.getDefaults().getColor("Button.borderColor")));
-        pricesPanel.setLayout(new java.awt.GridBagLayout());
-        jPanel1.add(pricesPanel, java.awt.BorderLayout.CENTER);
+        pricesPanelTickets.setLayout(new java.awt.GridBagLayout());
+        jPanel1.add(pricesPanelTickets);
 
         jPanelTarifs.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jLabelTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabelTotal.setForeground(new java.awt.Color(191, 23, 29));
         jLabelTotal.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelTotal.setText(" ");
         jLabelTotal.setAlignmentX(0.5F);
         jLabelTotal.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 10, 10));
+        jLabelTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelTotal.setForeground(new java.awt.Color(191, 23, 29));
         jPanelTarifs.add(jLabelTotal, java.awt.BorderLayout.SOUTH);
 
         jPanelBooking.add(jPanelTarifs, java.awt.BorderLayout.CENTER);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 204));
-        jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, javax.swing.UIManager.getDefaults().getColor("Button.borderColor")));
-        jPanel9.setEnabled(false);
-        jPanel9.setLayout(new java.awt.GridBagLayout());
+        jPanelCustomer.setBackground(new java.awt.Color(255, 255, 204));
+        jPanelCustomer.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, javax.swing.UIManager.getDefaults().getColor("Button.borderColor")));
+        jPanelCustomer.setEnabled(false);
+        jPanelCustomer.setLayout(new java.awt.GridBagLayout());
 
         jLabel4.setFont(jLabel4.getFont().deriveFont(jLabel4.getFont().getSize()+2f));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -331,7 +337,7 @@ public class JDialogBooking extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 5, 5);
-        jPanel9.add(jLabel4, gridBagConstraints);
+        jPanelCustomer.add(jLabel4, gridBagConstraints);
 
         jTextFieldName.setFont(jTextFieldName.getFont().deriveFont(jTextFieldName.getFont().getSize()+2f));
         jTextFieldName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -347,11 +353,11 @@ public class JDialogBooking extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
-        jPanel9.add(jTextFieldName, gridBagConstraints);
+        jPanelCustomer.add(jTextFieldName, gridBagConstraints);
 
-        jLabel19.setFont(jLabel19.getFont().deriveFont(jLabel19.getFont().getSize()+2f));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText(I18n.get("labelPhone" )); // NOI18N
+        jLabel19.setFont(jLabel19.getFont().deriveFont(jLabel19.getFont().getSize()+2f));
         jLabel19.setName("Nb Place"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -359,7 +365,7 @@ public class JDialogBooking extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 5);
-        jPanel9.add(jLabel19, gridBagConstraints);
+        jPanelCustomer.add(jLabel19, gridBagConstraints);
 
         jTextFieldPhone.setFont(jTextFieldPhone.getFont().deriveFont(jTextFieldPhone.getFont().getSize()+2f));
         jTextFieldPhone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -372,7 +378,7 @@ public class JDialogBooking extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 10, 5);
-        jPanel9.add(jTextFieldPhone, gridBagConstraints);
+        jPanelCustomer.add(jTextFieldPhone, gridBagConstraints);
 
         jButtonRecall.setText(I18n.get("buttonRecall" )); // NOI18N
         jButtonRecall.addActionListener(new java.awt.event.ActionListener() {
@@ -385,23 +391,23 @@ public class JDialogBooking extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 10, 10);
-        jPanel9.add(jButtonRecall, gridBagConstraints);
+        jPanelCustomer.add(jButtonRecall, gridBagConstraints);
 
-        jPanelBooking.add(jPanel9, java.awt.BorderLayout.SOUTH);
+        jPanelBooking.add(jPanelCustomer, java.awt.BorderLayout.SOUTH);
 
         getContentPane().add(jPanelBooking, java.awt.BorderLayout.CENTER);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
+        jPanelActions.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jPanelActions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
 
         jButtonCancel.setText(I18n.get("buttonCancel" )); // NOI18N
-        jButtonCancel.setNextFocusableComponent(pricesPanel);
+        jButtonCancel.setNextFocusableComponent(pricesPanelTickets);
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        jPanel7.add(jButtonCancel);
+        jPanelActions.add(jButtonCancel);
 
         jButtonOK.setText(I18n.get("buttonOK" )); // NOI18N
         jButtonOK.setNextFocusableComponent(jButtonCancel);
@@ -410,9 +416,9 @@ public class JDialogBooking extends javax.swing.JDialog {
                 jButtonOKActionPerformed(evt);
             }
         });
-        jPanel7.add(jButtonOK);
+        jPanelActions.add(jButtonOK);
 
-        getContentPane().add(jPanel7, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanelActions, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -499,17 +505,21 @@ public class JDialogBooking extends javax.swing.JDialog {
             return;
         }
         if (!tickets.isEmpty()) {
-            JDialog dialog = new JDialogSelling(this, tickets);
+            JDialogSelling dialog = new JDialogSelling(this, tickets);
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
-            new Thread(new TicketsPrintThread(tickets)).start();
+            if (dialog.flagOK) {
+                new Thread(new TicketsPrintThread(tickets)).start();
+            } else {
+                return;
+            }
         }
         flagOK = true;
         dispose();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        cancel();
+        dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonRecallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecallActionPerformed
@@ -538,13 +548,13 @@ public class JDialogBooking extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelNbFreeSeats;
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanelActions;
     private javax.swing.JPanel jPanelBooking;
+    private javax.swing.JPanel jPanelCustomer;
     private javax.swing.JPanel jPanelPerformance;
     private javax.swing.JPanel jPanelTarifs;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPhone;
-    private javax.swing.JPanel pricesPanel;
+    private javax.swing.JPanel pricesPanelTickets;
     // End of variables declaration//GEN-END:variables
 }

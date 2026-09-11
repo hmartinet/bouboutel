@@ -22,6 +22,7 @@ public class JDialogSelling extends javax.swing.JDialog {
     private final BookingSystem bookingSystem;
     private final List<Ticket> tickets;
     private final Double totalAmount;
+    public Boolean flagOK = false;
 
     public JDialogSelling(JDialog parent, List<Ticket> tickets) {
         super(parent, true);
@@ -88,6 +89,7 @@ public class JDialogSelling extends javax.swing.JDialog {
         jLabelC3 = new javax.swing.JLabel();
         jLabelC4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jButtonCancel = new javax.swing.JButton();
         jButtonOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -266,6 +268,14 @@ public class JDialogSelling extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
 
+        jButtonCancel.setText("Annuler");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCancel);
+
         jButtonOK.setText("OK");
         jButtonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,14 +289,21 @@ public class JDialogSelling extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        this.flagOK = true;
         this.dispose();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-// TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosing
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonOK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
