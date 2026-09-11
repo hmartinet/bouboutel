@@ -36,6 +36,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableRowSorter;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  *
@@ -45,6 +46,7 @@ public final class MainJFrame extends javax.swing.JFrame {
     private final BookingSystem bookingSystem;
     private DataTableModel<Performance> tableModel;
     private FileChannel lockChannel;
+    Color fullReprColor;
 
     /**
      * Creates new form MainJFrame
@@ -147,11 +149,12 @@ public final class MainJFrame extends javax.swing.JFrame {
         jTableRepresentations.getSelectionModel().setSelectionMode(
                 ListSelectionModel.SINGLE_SELECTION);
 
+        fullReprColor = Color.decode(Preferences.getFullReprColor());
         TableCellRendererManager.setAsDefault(jTableRepresentations, (int row) -> {
             Performance p = tableModel.getRowModel(
                     jTableRepresentations.convertRowIndexToModel(row));
             if (p.getNbFreeSeats() == 0) {
-                return Color.RED;
+                return fullReprColor;
             }
             return Color.BLACK;
         });
@@ -168,7 +171,10 @@ public final class MainJFrame extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
 
         try {
-            BufferedImage headerImage = ImageIO.read(new File("header.jpg"));
+            BufferedImage headerImage = Thumbnails.of(ImageIO.read(new File("header.jpg")))
+                    .size(4000, 196)
+                    .keepAspectRatio(true)
+                    .asBufferedImage();
             jPanelHeader.add(new JLabel(new ImageIcon(headerImage)));
         } catch (IOException e) {
             System.out.println("Could not find header image " + e);
@@ -192,6 +198,7 @@ public final class MainJFrame extends javax.swing.JFrame {
         setup.setLocationRelativeTo(this);
         setup.setVisible(true);
         if (reloadTable) {
+            fullReprColor = Color.decode(Preferences.getFullReprColor());
             tableModel.fireTableDataChanged();
         }
     }
@@ -248,6 +255,7 @@ public final class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHeader.setPreferredSize(new java.awt.Dimension(10, 164));
         getContentPane().add(jPanelHeader);
 
         jPanelRepresentations.setBackground(new java.awt.Color(191, 23, 29));

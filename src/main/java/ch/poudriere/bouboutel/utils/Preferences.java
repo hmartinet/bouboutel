@@ -40,6 +40,8 @@ public class Preferences {
     public static final int DEFAULT_PRICE_Y = 72;
     public static final int DEFAULT_ONE_ENTRY_X = 8;
     public static final int DEFAULT_ONE_ENTRY_Y = 78;
+    public static final String DEFAULT_FULL_REPR_COLOR = "#cc0000";
+    public static final String DEFAULT_INVITATION_COLOR = "#ff6600";
     
     public static final Version VERSION = new Version("3.0");
     private static final Locale locale = Locale.forLanguageTag("fr-CH");
@@ -60,6 +62,8 @@ public class Preferences {
     private static int priceY = DEFAULT_PRICE_Y;
     private static int oneEntryX = DEFAULT_ONE_ENTRY_X;
     private static int oneEntryY = DEFAULT_ONE_ENTRY_Y;
+    private static String fullReprColor = DEFAULT_FULL_REPR_COLOR;
+    private static String invitationColor = DEFAULT_INVITATION_COLOR;
     
     
     /**
@@ -271,6 +275,34 @@ public class Preferences {
     public static void setOneEntryY(int aOneEntryY) {
         oneEntryY = aOneEntryY;
     }
+    
+    /**
+     * @return the invitationColor
+     */
+    public static String getInvitationColor() {
+        return invitationColor;
+    }
+
+    /**
+     * @param aInvitationColor the invitationColor to set
+     */
+    public static void setInvitationColor(String aInvitationColor) {
+        invitationColor = aInvitationColor;
+    }
+
+    /**
+     * @return the fullReprColor
+     */
+    public static String getFullReprColor() {
+        return fullReprColor;
+    }
+
+    /**
+     * @param aFullReprColor the fullReprColor to set
+     */
+    public static void setFullReprColor(String aFullReprColor) {
+        fullReprColor = aFullReprColor;
+    }
 
     public static String isoFormat(LocalDateTime date) {
         return date.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -341,6 +373,12 @@ public class Preferences {
             setOneEntryY(Integer.parseInt(prop.getProperty(
                     "bouboutel.ticket.one-entry.y",
                     Integer.toString(getOneEntryY()))));
+            setFullReprColor(prop.getProperty(
+                    "bouboutel.full-representation.color",
+                    getFullReprColor()));
+            setInvitationColor(prop.getProperty(
+                    "bouboutel.invitation.color",
+                    getInvitationColor()));
         }
         loadTicketImage();
     }
@@ -367,6 +405,8 @@ public class Preferences {
         prop.setProperty("bouboutel.ticket.price.y", Integer.toString(getPriceY()));
         prop.setProperty("bouboutel.ticket.one-entry.x", Integer.toString(getOneEntryX()));
         prop.setProperty("bouboutel.ticket.one-entry.y", Integer.toString(getOneEntryY()));
+        prop.setProperty("bouboutel.full-representation.color", getFullReprColor());
+        prop.setProperty("bouboutel.invitation.color", getInvitationColor());
         try ( OutputStream out = new FileOutputStream(file)) {
             prop.store(out, null);
         }

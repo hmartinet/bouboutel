@@ -149,7 +149,7 @@ public class Ticket extends AbstractModel {
         params.put("type", "preview");
         params.put("select", 0);
         params.put("id", "FACTICE");
-        params.put("show", "Spéctacle factice");
+        params.put("show", "Spectacle factice");
         params.put("company", "Compagnie exemple");
         params.put("room", "La Poudrière");
         params.put("street", "Quai Philippe-Godet 22");

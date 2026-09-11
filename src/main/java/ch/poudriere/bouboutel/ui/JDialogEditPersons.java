@@ -46,6 +46,7 @@ public class JDialogEditPersons extends javax.swing.JDialog {
         this.bookingSystem = BookingSystem.getInstance();
 
         initComponents();
+        Color invitationColor = Color.decode(Preferences.getInvitationColor());
 
         bookingsTableModel = new DataTableModel(
                 bookingSystem.
@@ -66,7 +67,7 @@ public class JDialogEditPersons extends javax.swing.JDialog {
             Booking b = bookingsTableModel.getRowModel(
                     bookingsTable.convertRowIndexToModel(row));
             if (b.getComment().equals("INVITATION")) {
-                return Color.LIGHT_GRAY;
+                return invitationColor;
             }
             return Color.BLACK;
         });

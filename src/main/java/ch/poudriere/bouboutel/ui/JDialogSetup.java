@@ -55,6 +55,11 @@ public final class JDialogSetup extends javax.swing.JDialog {
         this.bookingSystem = BookingSystem.getInstance();
 
         initComponents();
+        
+        fullReprColorButton.setBackground(Color.decode(
+                Preferences.getFullReprColor()));
+        invitationColorButton.setBackground(Color.decode(
+                Preferences.getInvitationColor()));
 
         showOldPerfomranceCheckBox.setSelected(Preferences.
                 isShowOldPerformances());
@@ -345,6 +350,11 @@ public final class JDialogSetup extends javax.swing.JDialog {
         jButtonBrowse1 = new javax.swing.JButton();
         jButtonMakeBackup = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        fullReprColorButton = new javax.swing.JButton();
+        backupLabel1 = new javax.swing.JLabel();
+        backupLabel2 = new javax.swing.JLabel();
+        invitationColorButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         companiesPanel = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         newCompanyButton = new javax.swing.JButton();
@@ -456,10 +466,10 @@ public final class JDialogSetup extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         systemPanel.add(printTicketBackgroundCheckBox, gridBagConstraints);
 
-        backupLabel.setText(I18n.get("label.backup")); // NOI18N
+        backupLabel.setText("Couleur ligne invitation");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
@@ -501,10 +511,58 @@ public final class JDialogSetup extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
         systemPanel.add(filler1, gridBagConstraints);
+
+        fullReprColorButton.setText(" ");
+        fullReprColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fullReprColorButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
+        systemPanel.add(fullReprColorButton, gridBagConstraints);
+
+        backupLabel1.setText(I18n.get("label.backup")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        systemPanel.add(backupLabel1, gridBagConstraints);
+
+        backupLabel2.setText("Couleur représentation complète");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE_LEADING;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 5);
+        systemPanel.add(backupLabel2, gridBagConstraints);
+
+        invitationColorButton.setText(" ");
+        invitationColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invitationColorButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
+        systemPanel.add(invitationColorButton, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weighty = 1.0;
+        systemPanel.add(jPanel2, gridBagConstraints);
 
         mainTabbedPane.addTab(I18n.get("label.system" ), systemPanel); // NOI18N
 
@@ -1083,9 +1141,25 @@ public final class JDialogSetup extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_printButton1ActionPerformed
 
+    private void fullReprColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullReprColorButtonActionPerformed
+        fullReprColorButton.setBackground(JColorChooser.showDialog(
+                null, "Choose a color", fullReprColorButton.getBackground()));
+        Preferences.setFullReprColor("#"+Integer.toHexString(
+                fullReprColorButton.getBackground().getRGB()).substring(2));
+    }//GEN-LAST:event_fullReprColorButtonActionPerformed
+
+    private void invitationColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invitationColorButtonActionPerformed
+        invitationColorButton.setBackground(JColorChooser.showDialog(
+                null, "Choose a color", invitationColorButton.getBackground()));
+        Preferences.setInvitationColor("#"+Integer.toHexString(
+                invitationColorButton.getBackground().getRGB()).substring(2));
+    }//GEN-LAST:event_invitationColorButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JLabel backupLabel;
+    private javax.swing.JLabel backupLabel1;
+    private javax.swing.JLabel backupLabel2;
     private javax.swing.JPanel companiesPanel;
     private javax.swing.JTable companiesTable;
     private javax.swing.JButton defaultButton;
@@ -1098,14 +1172,17 @@ public final class JDialogSetup extends javax.swing.JDialog {
     private javax.swing.JButton editPerformanceButton;
     private javax.swing.JButton editPriceListButton;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton fullReprColorButton;
     private javax.swing.JLabel horizLabel;
     private javax.swing.JSeparator horizSeparator;
     private javax.swing.JSpinner horizSpinner;
+    private javax.swing.JButton invitationColorButton;
     private javax.swing.JButton jButtonBrowse1;
     private javax.swing.JButton jButtonMakeBackup;
     private javax.swing.JButton jButtonOK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
