@@ -1,0 +1,4 @@
+#!/bin/bash
+APP_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$(dirname "$APP_DIR")" || exit 1
+exec java -jar Bouboutel.jar
